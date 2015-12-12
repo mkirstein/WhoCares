@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class WorldGen : MonoBehaviour {
 
@@ -7,11 +8,12 @@ public class WorldGen : MonoBehaviour {
     private float yAxisCoordLast;
     private float zAxisCoordLast;
 
-    public GameObject[] spawnPrefab;
-    public GameObject[] spawnClone;
+    private List<GameObject> allPrefabs;
+    private int prefabsCount;
 
-    private int prefabsRendered;
-    private Vector3 currPos;
+    public GameObject[] spawnPrefab;
+    
+    private float currPos;
     private int lastrnd;
 
     private static readonly System.Random getrandom = new System.Random();
@@ -26,17 +28,28 @@ public class WorldGen : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        xAxisCoordLast = -3f;
+        xAxisCoordLast = 0;
         yAxisCoordLast = 0;
         zAxisCoordLast = 0;
-        prefabsRendered = 1;
-	}
+        allPrefabs = new List<GameObject>();
+        prefabsCount = 0;
+
+        int rnd = GetRandomNumber(0, 4);
+        while (rnd == lastrnd)
+        {
+            rnd = GetRandomNumber(0, 4);
+        }
+        this.lastrnd = rnd;
+        GameObject chunk = Instantiate(spawnPrefab[rnd], new Vector3(0,0,0), Quaternion.Euler(0, 0, 0)) as GameObject;
+        allPrefabs.Add(chunk);
+        prefabsCount++;
+    }
 
     private Vector3 spawnLocation
     {
         get
         {
-            xAxisCoordLast += 35f;
+            xAxisCoordLast += prefabWidth(allPrefabs[prefabsCount-1]);
             return new Vector3(xAxisCoordLast, yAxisCoordLast, zAxisCoordLast);
         } 
     }
@@ -49,24 +62,15 @@ public class WorldGen : MonoBehaviour {
         }
     }
 
-    private bool renderPrefab
+    private float prefabWidth(GameObject gObj)
     {
-        get
-        {
-            if (cameraLocation[0] + 35 > currPos[0])
-            {
-                return true;
-            } 
-            else
-            {
-                return false;
-            } 
-        }
+        return gObj.GetComponentInChildren<Transform>().Find("Ground").GetComponent<BoxCollider2D>().bounds.size.x;
     }
+    
     // Update is called sonce per frame
     public void Update()
     {
-        if (renderPrefab)
+        if (cameraLocation.x + prefabWidth(allPrefabs[prefabsCount - 1]) >= currPos)
         {
             int rnd = GetRandomNumber(0, 4);
             while (rnd == lastrnd)
@@ -74,9 +78,14 @@ public class WorldGen : MonoBehaviour {
                 rnd = GetRandomNumber(0, 4);
             }
             this.lastrnd = rnd;
-            spawnClone[rnd] = Instantiate(spawnPrefab[rnd], spawnLocation, Quaternion.Euler(0, 0, 0)) as GameObject;
-            currPos = spawnClone[rnd].transform.position;
-            prefabsRendered += 1;
+            GameObject chunk = Instantiate(spawnPrefab[rnd], spawnLocation, Quaternion.Euler(0, 0, 0)) as GameObject;
+            allPrefabs.Add(chunk);
+            prefabsCount++;
+
+            //Debug.Log(chunk.transform.position.x);
+            Debug.Log("Aktuelle Breite: "+chunk.GetComponentInChildren<Transform>().Find("Ground").GetComponent<BoxCollider2D>().bounds.size.x);
+            
+            currPos = chunk.transform.position.x + prefabWidth(chunk);
         }
     }
 }
