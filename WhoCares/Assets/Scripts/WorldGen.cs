@@ -12,6 +12,7 @@ public class WorldGen : MonoBehaviour {
 
     private int prefabsRendered;
     private Vector3 currPos;
+    private int lastrnd;
 
     private static readonly System.Random getrandom = new System.Random();
     private static readonly object syncLock = new object();
@@ -67,7 +68,12 @@ public class WorldGen : MonoBehaviour {
     {
         if (renderPrefab)
         {
-            int rnd = GetRandomNumber(0, 3);
+            int rnd = GetRandomNumber(0, 4);
+            while (rnd == lastrnd)
+            {
+                rnd = GetRandomNumber(0, 4);
+            }
+            this.lastrnd = rnd;
             spawnClone[rnd] = Instantiate(spawnPrefab[rnd], spawnLocation, Quaternion.Euler(0, 0, 0)) as GameObject;
             currPos = spawnClone[rnd].transform.position;
             prefabsRendered += 1;
