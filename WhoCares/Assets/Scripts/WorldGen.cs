@@ -82,8 +82,7 @@ public class WorldGen : MonoBehaviour {
             allPrefabs.Add(chunk);
             prefabsCount++;
 
-            //Debug.Log(chunk.transform.position.x);
-            Debug.Log("Aktuelle Breite: "+chunk.GetComponentInChildren<Transform>().Find("Ground").GetComponent<BoxCollider2D>().bounds.size.x);
+            Debug.Log("Aktuelle Breite des Level-Chunk: "+chunk.GetComponentInChildren<Transform>().Find("Ground").GetComponent<BoxCollider2D>().bounds.size.x);
             
             currPos = chunk.transform.position.x + prefabWidth(chunk);
         }
