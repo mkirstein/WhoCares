@@ -6,6 +6,16 @@ namespace UnityStandardAssets._2D
     {
         public Transform target;
 
+        private float scrollSpeed = 0.1f;
+
+        public float ScrollSpeed
+        {
+            get
+            {
+                return scrollSpeed;
+            }
+        }
+
         // Use this for initialization
         private void Start()
         {
@@ -16,7 +26,7 @@ namespace UnityStandardAssets._2D
         // Update is called once per frame
         private void Update()
         {
-            transform.position = new Vector3(transform.position.x + 0.1f, target.position.y, transform.position.z);
+            transform.position = new Vector3(transform.position.x + ScrollSpeed, target.position.y, transform.position.z);
         }
     }
 }
