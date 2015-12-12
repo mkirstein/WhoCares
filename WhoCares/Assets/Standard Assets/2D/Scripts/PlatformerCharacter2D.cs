@@ -146,5 +146,20 @@ namespace UnityStandardAssets._2D
             theScale.x *= -1;
             transform.localScale = theScale;
         }
+
+        void OnBecameInvisible()
+        {
+            Debug.Log("Respawn");
+            Respawn();
+        }
+
+        private void Respawn()
+        {
+            Vector3 camPos = Camera.main.gameObject.transform.position;
+            Vector3 respawnPos = new Vector3(camPos.x + 5, camPos.y + 3, gameObject.transform.position.z);
+            Debug.Log("Respawn at " + respawnPos.ToString());
+            gameObject.transform.position = respawnPos;
+        }
+
     }
 }
