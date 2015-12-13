@@ -66,6 +66,7 @@ public class WorldGen : MonoBehaviour {
         allPrefabs.Add(chunk);
         //Füge den ersten Hintergrund in die Liste der Hintergründe
         allBackgrounds.Add(background);
+        allBackgrounds.Add(background1);
     }
 
     // Berechnet eine neue spawnLocation welche hinter dem letzten Prefab ist
@@ -107,6 +108,12 @@ public class WorldGen : MonoBehaviour {
                 allPrefabs.RemoveAt(0);
             }
 
+            if (allBackgrounds.Count >=10)
+            {
+                Destroy(allBackgrounds[0]);
+                allBackgrounds.RemoveAt(0);
+            }
+
             // erstellt eine "Zufall"szahl und stellt danach sicher, dass diese unterschiedlich von der Zufallszahl davor ist, um etwas Abwechslung in die Level-Generierung zu bringen
             int rnd = GetRandomNumber(0, 4);
             while (rnd == lastrnd)
@@ -124,9 +131,9 @@ public class WorldGen : MonoBehaviour {
             allPrefabs.Add(chunk);
 
             // Spawne eine Kopie von dem "zufällig" ausgewählten Background an neuer x-Position
-            GameObject background = Instantiate(spawnBackground[lastrnd], new Vector3(spLoc.x, spawnBackground[rnd].transform.position.y, spawnBackground[rnd].transform.position.z), Quaternion.Euler(0, 0, 0)) as GameObject;
+            GameObject background = Instantiate(spawnBackground[rnd], new Vector3(spLoc.x, spawnBackground[rnd].transform.position.y, spawnBackground[rnd].transform.position.z), Quaternion.Euler(0, 0, 0)) as GameObject;
             //// Füge sie meiner Liste aller Kopien hinzu
-            //allBackgrounds.Add(background);
+            allBackgrounds.Add(background);
 
             // Debug Meldung dass ein Chunk erstellt wurde
             Debug.Log("Aktuelle Breite des Level-Chunk: "+ prefabWidth(chunk));
