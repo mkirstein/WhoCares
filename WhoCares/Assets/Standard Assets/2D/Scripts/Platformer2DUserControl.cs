@@ -22,18 +22,36 @@ namespace UnityStandardAssets._2D
             if (!m_Jump)
             {
                 // Read the jump input in Update so button presses aren't missed.
-                m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = Input.GetKeyDown(KeyCode.W);
             }
         }
 
+        private float direction
+        {
+            get
+            {
+                if (Input.GetKey(KeyCode.A))
+                {
+                    return -1f;
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    return 1f;
+                }
+                else
+                {
+                    return 0f;
+                }
+            } 
+        }
 
         private void FixedUpdate()
         {
             // Read the inputs.
             bool crouch = Input.GetKey(KeyCode.LeftShift);
-            float h = CrossPlatformInputManager.GetAxis("Horizontal");
+            //float h = CrossPlatformInputManager.GetAxis("Horizontal");
             // Pass all parameters to the character control script.
-            m_Character.Move(h, crouch, m_Jump);
+            m_Character.Move(direction, crouch, m_Jump);
             m_Jump = false;
         }
     }
