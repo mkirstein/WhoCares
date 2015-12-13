@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 namespace UnityStandardAssets._2D
 {
@@ -175,6 +176,19 @@ namespace UnityStandardAssets._2D
         private void UpdateLifeCounter()
         {
             lifeCounter--;
+            if(lifeCounter < 0)
+            {
+                switch(playerID)
+                {
+                    case 0:
+                        SceneManager.LoadScene("Player2Win");
+                    break;
+                    case 1:
+                        SceneManager.LoadScene("Player1Win");
+                    break;
+                }
+                return;
+            }
             lifeCounterText.text = lifeCounter.ToString();
         }
 
