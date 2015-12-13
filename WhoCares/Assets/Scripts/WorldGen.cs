@@ -11,10 +11,14 @@ public class WorldGen : MonoBehaviour {
 
     // Hier werden alle Weltabschnitte gespeichert
     private List<GameObject> allPrefabs;
+    //Liste aller Hintergründe
+    private List<GameObject> allBackgrounds;
 
     // Hier werden die zu spawnenden Prefabs gespeichert
     // Man zieht diese dazu im Inspektor da rein
     public GameObject[] spawnPrefab;
+    //Array aller Hintergründe
+    public GameObject[] spawnBackground;
     
     // aktuelle x Koordinate des neuesten Prefabs
     private float currPos;
@@ -42,6 +46,7 @@ public class WorldGen : MonoBehaviour {
 
         // Initialisiere die Liste der Levelchunks
         allPrefabs = new List<GameObject>();
+        allBackgrounds = new List<GameObject>();
 
         // Bekomme eine "zufällige" Zahl
         int rnd = GetRandomNumber(0, 4);
@@ -53,8 +58,14 @@ public class WorldGen : MonoBehaviour {
 
         // Spawne das erste Levelchunk
         GameObject chunk = Instantiate(spawnPrefab[rnd], new Vector3(0,0,0), Quaternion.Euler(0, 0, 0)) as GameObject;
+        //Spawne den ersten Hintergrund
+        GameObject background = Instantiate(spawnBackground[rnd],spawnBackground[rnd].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+        //Spawne den zweiten Hintergrund
+        GameObject background1 = Instantiate(spawnBackground[4-rnd], spawnBackground[4-rnd].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         // Füge das erste Levelchunk der Liste aller Chunks hinzu
         allPrefabs.Add(chunk);
+        //Füge den ersten Hintergrund in die Liste der Hintergründe
+        allBackgrounds.Add(background);
     }
 
     // Berechnet eine neue spawnLocation welche hinter dem letzten Prefab ist
@@ -104,11 +115,19 @@ public class WorldGen : MonoBehaviour {
             }
             this.lastrnd = rnd;
 
+            // Wir holen uns die neue Spawnlocation
+            Vector3 spLoc = spawnLocation;
+
             // Spawne eine Kopie von dem "zufällig" ausgewählten Prefab
-            GameObject chunk = Instantiate(spawnPrefab[rnd], spawnLocation, Quaternion.Euler(0, 0, 0)) as GameObject;
+            GameObject chunk = Instantiate(spawnPrefab[rnd], spLoc, Quaternion.Euler(0, 0, 0)) as GameObject;
             // Füge sie meiner Liste aller Kopien hinzu
             allPrefabs.Add(chunk);
-            
+
+            // Spawne eine Kopie von dem "zufällig" ausgewählten Background an neuer x-Position
+            GameObject background = Instantiate(spawnBackground[lastrnd], new Vector3(spLoc.x, spawnBackground[rnd].transform.position.y, spawnBackground[rnd].transform.position.z), Quaternion.Euler(0, 0, 0)) as GameObject;
+            //// Füge sie meiner Liste aller Kopien hinzu
+            //allBackgrounds.Add(background);
+
             // Debug Meldung dass ein Chunk erstellt wurde
             Debug.Log("Aktuelle Breite des Level-Chunk: "+ prefabWidth(chunk));
             
