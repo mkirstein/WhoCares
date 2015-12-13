@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace UnityStandardAssets._2D
 {
-    [RequireComponent(typeof (PlatformerCharacter2D))]
-    public class Platformer2DUserControl : MonoBehaviour
+    [RequireComponent(typeof(PlatformerCharacter2D))]
+    public class Platformer2DUserControlPlayer2 : MonoBehaviour
     {
         private PlatformerCharacter2D m_Character;
         private bool m_Jump;
@@ -16,25 +16,15 @@ namespace UnityStandardAssets._2D
             m_Character = GetComponent<PlatformerCharacter2D>();
         }
 
-
-        private void Update()
-        {
-            if (!m_Jump)
-            {
-                // Read the jump input in Update so button presses aren't missed.
-                m_Jump = Input.GetKeyDown(KeyCode.W);
-            }
-        }
-
         private float direction
         {
             get
             {
-                if (Input.GetKey(KeyCode.A))
+                if (Input.GetKey(KeyCode.LeftArrow))
                 {
                     return -1f;
                 }
-                else if (Input.GetKey(KeyCode.D))
+                else if (Input.GetKey(KeyCode.RightArrow))
                 {
                     return 1f;
                 }
@@ -42,8 +32,19 @@ namespace UnityStandardAssets._2D
                 {
                     return 0f;
                 }
-            } 
+            }
         }
+
+        private void Update()
+        {
+            if (!m_Jump)
+            {
+                // Read the jump input in Update so button presses aren't missed.
+                //m_Jump = CrossPlatformInputManager.GetButtonDown("Jump");
+                m_Jump = Input.GetKeyDown(KeyCode.UpArrow);
+            }
+        }
+
 
         private void FixedUpdate()
         {
