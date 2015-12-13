@@ -41,6 +41,7 @@ namespace UnityStandardAssets._2D
             }
         }
         private volatile int jumpCount = 0;         // JumpCounter for double-jump
+        private int lifes = 5;
 
         private void Awake()
         {
@@ -51,6 +52,7 @@ namespace UnityStandardAssets._2D
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
             jumpCount = this.MaxJumps;
+
         }
 
 
