@@ -155,10 +155,13 @@ namespace UnityStandardAssets._2D
 
         private void Respawn()
         {
-            Vector3 camPos = Camera.main.gameObject.transform.position;
-            Vector3 respawnPos = new Vector3(camPos.x + 5, camPos.y + 3, gameObject.transform.position.z);
-            Debug.Log("Respawn at " + respawnPos.ToString());
-            gameObject.transform.position = respawnPos;
+            if (Camera.main != null)
+            {
+                Vector3 camPos = Camera.main.gameObject.transform.position;
+                Vector3 respawnPos = new Vector3(camPos.x + 5, camPos.y + 3, gameObject.transform.position.z);
+                Debug.Log("Respawn at " + respawnPos.ToString());
+                gameObject.transform.position = respawnPos;
+            }
         }
 
     }
