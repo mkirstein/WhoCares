@@ -2,12 +2,12 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class LoadMenu : MonoBehaviour
+public class LoadPlayer2Win : MonoBehaviour
 {
 
     // Update is called once per frame
-    public void Update()
+    void Update()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene("Player2Win");
     }
 }
