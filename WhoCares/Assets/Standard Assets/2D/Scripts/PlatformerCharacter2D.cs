@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UnityStandardAssets._2D
 {
@@ -41,6 +42,12 @@ namespace UnityStandardAssets._2D
             }
         }
         private volatile int jumpCount = 0;         // JumpCounter for double-jump
+
+        [SerializeField]
+        private int playerID;
+        [SerializeField]
+        private Text lifeCounterText;
+        private int lifeCounter = 5;
 
         private void Awake()
         {
@@ -150,6 +157,7 @@ namespace UnityStandardAssets._2D
         void OnBecameInvisible()
         {
             Debug.Log("Respawn");
+            UpdateLifeCounter();
             Respawn();
         }
 
@@ -162,6 +170,12 @@ namespace UnityStandardAssets._2D
                 Debug.Log("Respawn at " + respawnPos.ToString());
                 gameObject.transform.position = respawnPos;
             }
+        }
+
+        private void UpdateLifeCounter()
+        {
+            lifeCounter--;
+            lifeCounterText.text = lifeCounter.ToString();
         }
 
     }
