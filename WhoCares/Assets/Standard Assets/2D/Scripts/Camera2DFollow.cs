@@ -26,6 +26,7 @@ namespace UnityStandardAssets._2D
         {
             transform.parent = null;
             cameraTarget = targetPlayer1;
+            targetPlayer2.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = false;
         }
 
 
@@ -37,9 +38,23 @@ namespace UnityStandardAssets._2D
             timeLeft -= Time.deltaTime;
             if (timeLeft < 0)
             {
-                cameraTarget = (cameraTarget == targetPlayer1) ? targetPlayer2 : targetPlayer1;
+                if(cameraTarget == targetPlayer1)
+                {
+                    changeCameraTargetTo(targetPlayer2);
+                }
+                else
+                {
+                    changeCameraTargetTo(targetPlayer1);
+                }
                 timeLeft = 10;
             }
+        }
+
+        private void changeCameraTargetTo(Transform newTarget)
+        {
+            cameraTarget.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = false;
+            cameraTarget = newTarget;
+            cameraTarget.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }
