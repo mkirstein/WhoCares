@@ -308,7 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPlayer1: {fileID: 1474974633}
   targetPlayer2: {fileID: 409948401}
-  ShowCameraTargetIcon: 1
+  SinglePlayerMode: 0
 --- !u!114 &260918807
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +407,7 @@ CanvasRenderer:
 GameObject:
   m_PrefabParentObject: {fileID: 100002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
   m_PrefabInternal: {fileID: 1588461856}
---- !u!114 &409948395
+--- !u!114 &409948394
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -415,9 +415,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 409948393}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c64060fa62cf66545866193565b97b0a, type: 3}
+  m_Script: {fileID: 11500000, guid: c3d7b34a3bb2d4e4b926e7e729d3d410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSingleplayer: 0
+  playerId: 1
 --- !u!4 &409948401 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
