@@ -158,7 +158,6 @@ namespace UnityStandardAssets._2D
 
         void OnBecameInvisible()
         {
-            Debug.Log("Respawn");
             UpdateLifeCounter();
             Respawn();
         }
@@ -169,7 +168,6 @@ namespace UnityStandardAssets._2D
             {
                 Vector3 camPos = Camera.main.gameObject.transform.position;
                 Vector3 respawnPos = new Vector3(camPos.x + 5, camPos.y + 3, gameObject.transform.position.z);
-                Debug.Log("Respawn at " + respawnPos.ToString());
                 gameObject.transform.position = respawnPos;
                 jumpCount = this.MaxJumps;
             }
