@@ -28,6 +28,7 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
 
+        public bool isSingleplayer;
         // Custom
         private int maxJumps = 2;
         public int MaxJumps
@@ -179,16 +180,23 @@ namespace UnityStandardAssets._2D
             lifeCounter--;
             if(lifeCounter < 0)
             {
-                switch(playerID)
+                if (!isSingleplayer)
                 {
-                    case 0:
-                        SceneManager.LoadScene("Player2Win");
-                    break;
-                    case 1:
-                        SceneManager.LoadScene("Player1Win");
-                    break;
+
+                    switch (playerID)
+                    {
+                        case 0:
+                            SceneManager.LoadScene("Player2Win");
+                            break;
+                        case 1:
+                            SceneManager.LoadScene("Player1Win");
+                            break;
+                    }
+                    return;
+                } else
+                {
+                    SceneManager.LoadScene("SingleplayerLost");
                 }
-                return;
             }
             lifeCounterText.text = lifeCounter.ToString();
         }

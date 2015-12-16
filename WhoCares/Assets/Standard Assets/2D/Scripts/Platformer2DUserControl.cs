@@ -9,7 +9,8 @@ namespace UnityStandardAssets._2D
     {
         private PlatformerCharacter2D m_Character;
         private bool m_Jump;
-
+        public bool isSingleplayer;
+        public int playerId;
 
         private void Awake()
         {
@@ -22,7 +23,19 @@ namespace UnityStandardAssets._2D
             if (!m_Jump)
             {
                 // Read the jump input in Update so button presses aren't missed.
-                m_Jump = Input.GetKeyDown(KeyCode.W);
+                if (!isSingleplayer)
+                {
+                    if (playerId == 0)
+                    {
+                        m_Jump = Input.GetKeyDown(KeyCode.W);
+                    } else if (playerId == 1)
+                    {
+                        m_Jump = Input.GetKeyDown(KeyCode.UpArrow);
+                    }
+                } else
+                {
+                    m_Jump = Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow);
+                }
             }
         }
 
@@ -30,17 +43,54 @@ namespace UnityStandardAssets._2D
         {
             get
             {
-                if (Input.GetKey(KeyCode.A))
+                if (!isSingleplayer)
                 {
-                    return -1f;
-                }
-                else if (Input.GetKey(KeyCode.D))
+                    if (playerId == 0)
+                    {
+                        if (Input.GetKey(KeyCode.A))
+                        {
+                            return -1f;
+                        }
+                        else if (Input.GetKey(KeyCode.D))
+                        {
+                            return 1f;
+                        }
+                        else
+                        {
+                            return 0f;
+                        }
+                    } else if (playerId == 1)
+                    {
+                        if (Input.GetKey(KeyCode.LeftArrow))
+                        {
+                            return -1f;
+                        }
+                        else if (Input.GetKey(KeyCode.RightArrow))
+                        {
+                            return 1f;
+                        }
+                        else
+                        {
+                            return 0f;
+                        }
+                    } else
+                    {
+                        return 0f;
+                    }
+                } else
                 {
-                    return 1f;
-                }
-                else
-                {
-                    return 0f;
+                    if ((Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.LeftArrow)))
+                    {
+                        return -1f;
+                    }
+                    else if ((Input.GetKey(KeyCode.D)) || (Input.GetKey(KeyCode.RightArrow)))
+                    {
+                        return 1f;
+                    }
+                    else
+                    {
+                        return 0f;
+                    }
                 }
             } 
         }
