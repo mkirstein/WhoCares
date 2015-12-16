@@ -6,6 +6,7 @@ namespace UnityStandardAssets._2D
     {
         public Transform targetPlayer1;
         public Transform targetPlayer2;
+        public bool SinglePlayerMode;
 
         private Transform cameraTarget;
 
@@ -26,6 +27,10 @@ namespace UnityStandardAssets._2D
         {
             transform.parent = null;
             cameraTarget = targetPlayer1;
+            if(SinglePlayerMode)
+            {
+                targetPlayer1.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = false;
+            }
             targetPlayer2.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = false;
         }
 
@@ -35,18 +40,21 @@ namespace UnityStandardAssets._2D
         {
             transform.position = new Vector3(transform.position.x + ScrollSpeed, cameraTarget.position.y, transform.position.z);
 
-            timeLeft -= Time.deltaTime;
-            if (timeLeft < 0)
+            if (!SinglePlayerMode)
             {
-                if(cameraTarget == targetPlayer1)
+                timeLeft -= Time.deltaTime;
+                if (timeLeft < 0)
                 {
-                    changeCameraTargetTo(targetPlayer2);
+                    if (cameraTarget == targetPlayer1)
+                    {
+                        changeCameraTargetTo(targetPlayer2);
+                    }
+                    else
+                    {
+                        changeCameraTargetTo(targetPlayer1);
+                    }
+                    timeLeft = 10;
                 }
-                else
-                {
-                    changeCameraTargetTo(targetPlayer1);
-                }
-                timeLeft = 10;
             }
         }
 
