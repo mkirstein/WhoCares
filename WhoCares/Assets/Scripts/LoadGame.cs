@@ -4,8 +4,15 @@ using UnityEngine.SceneManagement;
 
 public class LoadGame : MonoBehaviour {
 
+    public bool isSingleplayer;
 	// Update is called once per frame
 	public void Update () {
-        SceneManager.LoadScene("Mainscene");
+        if (!isSingleplayer)
+        {
+            SceneManager.LoadScene("Mainscene");
+        } else
+        {
+            SceneManager.LoadScene("MainsceneSingleplayer");
+        }
 	}
 }

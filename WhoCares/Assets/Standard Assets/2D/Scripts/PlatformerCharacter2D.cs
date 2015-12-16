@@ -27,6 +27,7 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
+        public GameObject character;
 
         public bool isSingleplayer;
         // Custom
@@ -50,6 +51,7 @@ namespace UnityStandardAssets._2D
         [SerializeField]
         private Text lifeCounterText;
         private int lifeCounter = 5;
+        private float highscore = 0f;
 
         private void Awake()
         {
@@ -66,6 +68,11 @@ namespace UnityStandardAssets._2D
         private void FixedUpdate()
         {
             m_Grounded = false;
+
+            if (this.highscore < character.transform.position.x)
+            {
+                this.highscore = character.transform.position.x;
+            }
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
             // This can be done using layers instead but Sample Assets will not overwrite your project settings.
@@ -195,6 +202,7 @@ namespace UnityStandardAssets._2D
                     return;
                 } else
                 {
+                    Debug.Log("Aktueller Score: "+highscore);
                     SceneManager.LoadScene("SingleplayerLost");
                 }
             }
