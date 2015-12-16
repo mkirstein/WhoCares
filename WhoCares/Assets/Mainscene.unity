@@ -308,6 +308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetPlayer1: {fileID: 1474974633}
   targetPlayer2: {fileID: 409948401}
+  ShowCameraTargetIcon: 1
 --- !u!114 &260918807
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ namespace UnityStandardAssets._2D
     {
         public Transform targetPlayer1;
         public Transform targetPlayer2;
+        public bool ShowCameraTargetIcon;
 
         private Transform cameraTarget;
 
@@ -26,6 +27,10 @@ namespace UnityStandardAssets._2D
         {
             transform.parent = null;
             cameraTarget = targetPlayer1;
+            if(!ShowCameraTargetIcon)
+            {
+                targetPlayer1.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = false;
+            }
             targetPlayer2.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = false;
         }
 
@@ -54,7 +59,10 @@ namespace UnityStandardAssets._2D
         {
             cameraTarget.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = false;
             cameraTarget = newTarget;
-            cameraTarget.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = true;
+            if (ShowCameraTargetIcon)
+            {
+                cameraTarget.GetComponentInChildren<Transform>().Find("camera_target_icon").GetComponent<SpriteRenderer>().enabled = true;
+            }
         }
     }
 }
