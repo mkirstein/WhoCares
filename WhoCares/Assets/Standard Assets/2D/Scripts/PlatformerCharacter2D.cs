@@ -1,7 +1,8 @@
-using System;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System;
 
 namespace UnityStandardAssets._2D
 {
@@ -211,6 +212,8 @@ namespace UnityStandardAssets._2D
                     else
                     {
                         Debug.Log("Aktueller Score: " + highscore);
+                        Highscores hs = GameObject.Find("Scores").GetComponent("Highscores") as Highscores;
+                        hs.Highscore = highscore;
                         SceneManager.LoadScene("SingleplayerLost");
                     }
                 }
