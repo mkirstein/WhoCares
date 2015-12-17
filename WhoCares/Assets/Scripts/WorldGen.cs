@@ -136,7 +136,7 @@ public class WorldGen : MonoBehaviour {
             allBackgrounds.Add(background);
 
             // Debug Meldung dass ein Chunk erstellt wurde
-            Debug.Log("Aktuelle Breite des Level-Chunk: "+ prefabWidth(chunk));
+            //Debug.Log("Aktuelle Breite des Level-Chunk: "+ prefabWidth(chunk));
             
             // Speichert die x Koordinate der aktuellen Position um Sie dann abzufragen ob ein neuer Chunk instanziert werden soll
             currPos = chunk.transform.position.x + prefabWidth(chunk);

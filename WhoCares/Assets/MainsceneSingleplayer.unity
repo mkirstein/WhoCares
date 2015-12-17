@@ -737,7 +737,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetPlayer1: {fileID: 129403677}
-  targetPlayer2: {fileID: 0}
+  targetPlayer2: {fileID: 129403677}
   SinglePlayerMode: 1
 --- !u!81 &959271359
 AudioListener:

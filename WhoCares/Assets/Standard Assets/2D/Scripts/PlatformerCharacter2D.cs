@@ -28,6 +28,7 @@ namespace UnityStandardAssets._2D
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
         public GameObject character;
+        private bool dead = false;
 
         public bool isSingleplayer;
         // Custom
@@ -51,7 +52,12 @@ namespace UnityStandardAssets._2D
         [SerializeField]
         private Text lifeCounterText;
         private int lifeCounter = 5;
-        private float highscore = 0f;
+        private static float highscore = 0f;
+        public static float Highscore
+        {
+            get { return highscore; }
+        }
+
 
         private void Awake()
         {
@@ -69,9 +75,9 @@ namespace UnityStandardAssets._2D
         {
             m_Grounded = false;
 
-            if (this.highscore < character.transform.position.x)
+            if (highscore < character.transform.position.x)
             {
-                this.highscore = character.transform.position.x;
+                highscore = character.transform.position.x;
             }
 
             // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
@@ -185,23 +191,28 @@ namespace UnityStandardAssets._2D
             lifeCounter--;
             if(lifeCounter < 0)
             {
-                if (!isSingleplayer)
+                if (!dead)
                 {
-
-                    switch (playerID)
+                    dead = true;
+                    if (!isSingleplayer)
                     {
-                        case 0:
-                            SceneManager.LoadScene("Player2Win");
-                            break;
-                        case 1:
-                            SceneManager.LoadScene("Player1Win");
-                            break;
+
+                        switch (playerID)
+                        {
+                            case 0:
+                                SceneManager.LoadScene("Player2Win");
+                                break;
+                            case 1:
+                                SceneManager.LoadScene("Player1Win");
+                                break;
+                        }
+                        return;
                     }
-                    return;
-                } else
-                {
-                    Debug.Log("Aktueller Score: "+highscore);
-                    SceneManager.LoadScene("SingleplayerLost");
+                    else
+                    {
+                        Debug.Log("Aktueller Score: " + highscore);
+                        SceneManager.LoadScene("SingleplayerLost");
+                    }
                 }
             }
             lifeCounterText.text = lifeCounter.ToString();
