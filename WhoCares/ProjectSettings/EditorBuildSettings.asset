@@ -17,3 +17,5 @@ EditorBuildSettings:
     path: Assets/MainsceneSingleplayer.unity
   - enabled: 1
     path: Assets/SingleplayerLost.unity
+  - enabled: 1
+    path: Assets/About.unity
