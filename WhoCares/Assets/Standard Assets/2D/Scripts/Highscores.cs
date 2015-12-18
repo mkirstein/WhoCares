@@ -10,10 +10,18 @@ namespace UnityStandardAssets._2D
         private static Highscores reference;
 
         private float highscore = 0f;
+        private float totalHighscore = 0f;
         public float Highscore
         {
             get { return highscore; }
-            set { highscore = value; }
+            set
+            {
+                highscore = value;
+                if (totalHighscore < value)
+                {
+                    totalHighscore = value;
+                }
+            }
         }
 
         public void Awake()
