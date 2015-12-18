@@ -10,7 +10,7 @@ public class TutorialText : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Invoke("ChangeLevel", 3.0f);
+        Invoke("ChangeLevel", 5.0f);
     }
 	
 	// Update is called once per frame
