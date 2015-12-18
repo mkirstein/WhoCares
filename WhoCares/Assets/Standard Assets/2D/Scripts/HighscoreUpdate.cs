@@ -9,7 +9,8 @@ namespace UnityStandardAssets._2D
     {
         Highscores hs;
 
-        public Text field;
+        public Text fieldhs;
+        public Text fieldths;
 
         // Use this for initialization
         void Start()
@@ -20,7 +21,8 @@ namespace UnityStandardAssets._2D
         // Update is called once per frame
         void Update()
         {
-            field.text = "Your score was: " + hs.Highscore;
+            fieldhs.text = "Your score was: " + hs.Highscore;
+            fieldths.text = "The total highscore was: " + hs.TotalHighscore;
         }
     }
 }

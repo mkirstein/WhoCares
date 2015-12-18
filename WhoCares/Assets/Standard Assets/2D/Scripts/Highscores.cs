@@ -13,14 +13,28 @@ namespace UnityStandardAssets._2D
         private float totalHighscore = 0f;
         public float Highscore
         {
-            get { return highscore; }
+            get
+            {
+                return this.highscore;
+            }
+
             set
             {
-                highscore = value;
-                if (totalHighscore < value)
+                Debug.Log("Highscore set: "+value);
+                this.highscore = 0f;
+                this.highscore = value;
+                if (this.totalHighscore < value)
                 {
                     totalHighscore = value;
                 }
+            }
+        }
+
+        public float TotalHighscore
+        {
+            get
+            {
+                return this.totalHighscore;
             }
         }
 

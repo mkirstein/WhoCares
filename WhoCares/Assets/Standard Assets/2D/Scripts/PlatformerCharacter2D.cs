@@ -53,12 +53,8 @@ namespace UnityStandardAssets._2D
         [SerializeField]
         private Text lifeCounterText;
         private int lifeCounter = 5;
-        private static float highscore = 0f;
-        public static float Highscore
-        {
-            get { return highscore; }
-        }
-
+        private float highscore = 0f;
+        
 
         private void Awake()
         {
@@ -211,7 +207,6 @@ namespace UnityStandardAssets._2D
                     }
                     else
                     {
-                        Debug.Log("Aktueller Score: " + highscore);
                         Highscores hs = GameObject.Find("Scores").GetComponent("Highscores") as Highscores;
                         hs.Highscore = highscore;
                         SceneManager.LoadScene("SingleplayerLost");
