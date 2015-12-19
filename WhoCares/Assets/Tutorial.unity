@@ -251,7 +251,9 @@ MonoBehaviour:
 
     right-arrow right
 
-    up-arrow jump'
+    up-arrow jump
+
+    right-shift crouch'
 --- !u!222 &1033036778
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -416,7 +418,9 @@ MonoBehaviour:
 
     d right
 
-    w jump'
+    w jump
+
+    left-shift crouch'
 --- !u!222 &1472370085
 CanvasRenderer:
   m_ObjectHideFlags: 0

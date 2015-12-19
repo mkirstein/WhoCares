@@ -79,6 +79,7 @@ namespace UnityStandardAssets._2D
                     }
                 } else
                 {
+                    //return CrossPlatformInputManager.GetAxis("Horizontal");
                     if ((Input.GetKey(KeyCode.A)) || (Input.GetKey(KeyCode.LeftArrow)))
                     {
                         return -1f;
@@ -95,13 +96,36 @@ namespace UnityStandardAssets._2D
             } 
         }
 
+        private bool crouch
+        {
+            get
+            {
+                if (!isSingleplayer)
+                {
+                    if (playerId == 0)
+                    {
+                        return Input.GetKey(KeyCode.LeftShift);
+                    }
+                    else if (playerId == 1)
+                    {
+                        return Input.GetKey(KeyCode.RightShift);
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
+                }
+            }
+        }
+
         private void FixedUpdate()
         {
-            // Read the inputs.
-            //bool crouch = Input.GetKey(KeyCode.LeftShift);
-            //float h = CrossPlatformInputManager.GetAxis("Horizontal");
             // Pass all parameters to the character control script.
-            m_Character.Move(direction, false, m_Jump);
+            m_Character.Move(direction, crouch, m_Jump);
             m_Jump = false;
         }
     }
