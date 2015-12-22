@@ -388,6 +388,10 @@ Prefab:
       propertyPath: character
       value: 
       objectReference: {fileID: 690664230}
+    - target: {fileID: 5000000, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
   m_IsPrefabParent: 0
@@ -487,8 +491,6 @@ MonoBehaviour:
   player1jump: {fileID: 8300000, guid: 38b81e2245283c24f844c0658afc6d4f, type: 3}
   player2jump: {fileID: 8300000, guid: dd129c1a0666a9043a8c106c804c8a66, type: 3}
   wasted: {fileID: 8300000, guid: 23a041714c154c849885bdf807c1012f, type: 3}
-  robbe: {fileID: 8300000, guid: a7473b6af0b9ae6468a7313fab92f00a, type: 3}
-  playerwin: {fileID: 8300000, guid: 46360d92ffa86114b93705ee83b9d70e, type: 3}
 --- !u!4 &561881208
 Transform:
   m_ObjectHideFlags: 0
@@ -731,13 +733,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 2
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: P1 Lifes
+  m_Text: Lifes
 --- !u!222 &759562413
 CanvasRenderer:
   m_ObjectHideFlags: 0
