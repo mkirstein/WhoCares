@@ -28,7 +28,7 @@ namespace UnityStandardAssets._2D
         private Animator m_Anim;            // Reference to the player's animator component.
         private Rigidbody2D m_Rigidbody2D;
         private bool m_FacingRight = true;  // For determining which way the player is currently facing.
-        public GameObject character;
+        public GameObject character;        // Der eigene Character
         private bool dead = false;
 
         public bool isSingleplayer;
@@ -64,6 +64,8 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
+
+            //Um die Audio-Effekte abzuspielen
             ae = GameObject.Find("Audio").GetComponent("AudioEffects") as AudioEffects;
 
 
@@ -153,12 +155,14 @@ namespace UnityStandardAssets._2D
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                     // Reduce max jumps in the air (double jump)
                     jumpCount = jumpCount - 1;
-                    if (this.playerID == 0)
+                    if ((this.playerID == 0)&&(jumpCount == 0))
                     {
+                        // Audio abspielen bei Sprung
                         ae.p1jump();
                     }
-                    if (this.playerID == 1)
+                    if ((this.playerID == 1)&& (jumpCount == 0))
                     {
+                        // Audio abspielen bei Sprung
                         ae.p2jump();
                     }
                     
@@ -201,6 +205,7 @@ namespace UnityStandardAssets._2D
             lifeCounter--;
             if(lifeCounter < 0)
             {
+                //Damit das nachfolgende nur 1 Mal ausgeführt wird
                 if (!dead)
                 {
                     dead = true;
@@ -220,8 +225,9 @@ namespace UnityStandardAssets._2D
                     }
                     else
                     {
+                        // Highscore update
                         Highscores hs = GameObject.Find("Scores").GetComponent("Highscores") as Highscores;
-                        hs.Highscore = highscore;
+                        hs.Highscore = (int) highscore;
                         SceneManager.LoadScene("SingleplayerLost");
                     }
                 }

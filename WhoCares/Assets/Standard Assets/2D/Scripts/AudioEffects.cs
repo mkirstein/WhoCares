@@ -5,8 +5,9 @@ namespace UnityStandardAssets._2D
 {
     public class AudioEffects : MonoBehaviour
     {
+        // Simple Class to play sound effects
 
-        public AudioClip player1jump, player2jump, wasted, robbe, playerwin;
+        public AudioClip player1jump, player2jump, wasted;
         private AudioSource source;
 
         void Awake()
@@ -24,14 +25,6 @@ namespace UnityStandardAssets._2D
         public void die()
         {
             source.PlayOneShot(wasted, 1);
-        }
-        public void seal()
-        {
-            source.PlayOneShot(robbe, 1);
-        }
-        public void win()
-        {
-            source.PlayOneShot(playerwin, 1);
         }
     }
 }

@@ -9,9 +9,9 @@ namespace UnityStandardAssets._2D
     {
         private static Highscores reference;
 
-        private float highscore = 0f;
-        private float totalHighscore = 0f;
-        public float Highscore
+        private int highscore = 0;
+        private int totalHighscore = 0;
+        public int Highscore
         {
             get
             {
@@ -20,17 +20,15 @@ namespace UnityStandardAssets._2D
 
             set
             {
-                Debug.Log("Highscore set: "+value);
-                this.highscore = 0f;
-                this.highscore = value;
-                if (this.totalHighscore < value)
+                this.highscore = (int) value;
+                if (this.totalHighscore < (int) value)
                 {
-                    totalHighscore = value;
+                    totalHighscore = (int) value;
                 }
             }
         }
 
-        public float TotalHighscore
+        public int TotalHighscore
         {
             get
             {

@@ -1,5 +1,5 @@
 # awesome
 
-Azure:
+A project by nkristek, mkirstein and wittenator.
 
-http://whocares-thegame.azurewebsites.net/
+Link to the most recent stable build: http://whocares-unity.azurewebsites.com
