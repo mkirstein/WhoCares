@@ -237,7 +237,7 @@ namespace UnityStandardAssets._2D
 
         public void PowerUp(PowerUp.PowerUps powUp)
         {
-            Debug.Log("PowerUp!!!");
+            Debug.Log("PowerUp: " + powUp.ToString());
         }
 
     }

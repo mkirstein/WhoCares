@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System;
 
 namespace UnityStandardAssets._2D
 {
@@ -6,12 +7,17 @@ namespace UnityStandardAssets._2D
     {
 
         public enum PowerUps { TripleJump, Sonic };
+        private PowerUps[] allPowerUps = (PowerUps[])Enum.GetValues(typeof(PowerUps));
+        private int count;
+        private System.Random rnd = new System.Random();
+
 
         private bool active = true;
 
         // Use this for initialization
         void Start()
         {
+            count = allPowerUps.Length;
         }
 
         // Update is called once per frame
@@ -26,8 +32,8 @@ namespace UnityStandardAssets._2D
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 PlatformerCharacter2D char2D = (PlatformerCharacter2D)coll.gameObject.GetComponent(typeof(PlatformerCharacter2D));
-
-                char2D.PowerUp(PowerUps.TripleJump);
+                int rand = rnd.Next(0, count);
+                char2D.PowerUp(allPowerUps[rand]);
                 active = false;
             }
         }
