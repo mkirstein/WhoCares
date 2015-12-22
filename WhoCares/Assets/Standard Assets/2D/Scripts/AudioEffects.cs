@@ -15,11 +15,11 @@ namespace UnityStandardAssets._2D
         }
         public void p1jump()
         {
-            source.PlayOneShot(player1jump, 1);
+            source.PlayOneShot(player1jump, 0.5f);
         }
         public void p2jump()
         {
-            source.PlayOneShot(player2jump, 1);
+            source.PlayOneShot(player2jump, 0.5f);
         }
         public void die()
         {
