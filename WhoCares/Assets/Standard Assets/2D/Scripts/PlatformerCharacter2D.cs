@@ -229,5 +229,10 @@ namespace UnityStandardAssets._2D
             lifeCounterText.text = lifeCounter.ToString();
         }
 
+        public void PowerUp(PowerUp.PowerUps powUp)
+        {
+            Debug.Log("PowerUp!!!");
+        }
+
     }
 }
