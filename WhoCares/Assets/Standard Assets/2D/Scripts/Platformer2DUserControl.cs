@@ -28,6 +28,7 @@ namespace UnityStandardAssets._2D
                     if (playerId == 0)
                     {
                         m_Jump = Input.GetKeyDown(KeyCode.W);
+                        
                     } else if (playerId == 1)
                     {
                         m_Jump = Input.GetKeyDown(KeyCode.UpArrow);

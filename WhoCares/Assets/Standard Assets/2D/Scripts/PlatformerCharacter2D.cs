@@ -150,6 +150,8 @@ namespace UnityStandardAssets._2D
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                     // Reduce max jumps in the air (double jump)
                     jumpCount = jumpCount - 1;
+                    AudioEffects ae = GameObject.Find("Audio").GetComponent("AudioEffects") as AudioEffects;
+                    ae.p1jump();
                 }
             }
 
