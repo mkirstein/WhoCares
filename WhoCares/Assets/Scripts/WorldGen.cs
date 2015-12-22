@@ -56,6 +56,7 @@ public class WorldGen : MonoBehaviour {
         }
         this.lastrnd = rndPrefab;
 
+        // Berechne eine andere Zahl um die Hintergründe anzusprechen
         int rndBackground = GetRandomNumber(0, spawnBackground.Length);
 
         // Spawne das erste Levelchunk
@@ -66,7 +67,7 @@ public class WorldGen : MonoBehaviour {
         GameObject background1 = Instantiate(spawnBackground[spawnBackground.Length - rndBackground], spawnBackground[spawnPrefab.Length - rndBackground].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         // Füge das erste Levelchunk der Liste aller Chunks hinzu
         allPrefabs.Add(chunk);
-        //Füge den ersten Hintergrund in die Liste der Hintergründe
+        //Füge die Hintergründe in die Liste der Hintergründe
         allBackgrounds.Add(background);
         allBackgrounds.Add(background1);
     }

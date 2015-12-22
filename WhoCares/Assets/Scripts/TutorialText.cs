@@ -10,10 +10,10 @@ public class TutorialText : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        // Nach 5 Sekunden die Szene ändern
         Invoke("ChangeLevel", 5.0f);
     }
 	
-	// Update is called once per frame
 	void ChangeLevel () {
 	    if (isSingleplayer)
         {

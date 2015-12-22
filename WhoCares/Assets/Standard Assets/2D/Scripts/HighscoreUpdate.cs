@@ -15,14 +15,10 @@ namespace UnityStandardAssets._2D
         // Use this for initialization
         void Start()
         {
+            // Set Text-Fields
             hs = GameObject.Find("Scores").GetComponent("Highscores") as Highscores;
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
             fieldhs.text = "Your score was: " + hs.Highscore;
-            fieldths.text = "The total highscore was: " + hs.TotalHighscore;
+            fieldths.text = "The highscore was: " + hs.TotalHighscore;
         }
     }
 }
