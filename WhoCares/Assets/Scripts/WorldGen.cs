@@ -49,19 +49,21 @@ public class WorldGen : MonoBehaviour {
         allBackgrounds = new List<GameObject>();
 
         // Bekomme eine "zufällige" Zahl
-        int rnd = GetRandomNumber(0, 4);
-        while (rnd == lastrnd)
+        int rndPrefab = GetRandomNumber(0, spawnPrefab.Length);
+        while (rndPrefab == lastrnd)
         {
-            rnd = GetRandomNumber(0, 4);
+            rndPrefab = GetRandomNumber(0, spawnPrefab.Length);
         }
-        this.lastrnd = rnd;
+        this.lastrnd = rndPrefab;
+
+        int rndBackground = GetRandomNumber(0, spawnBackground.Length);
 
         // Spawne das erste Levelchunk
-        GameObject chunk = Instantiate(spawnPrefab[rnd], new Vector3(0,0,0), Quaternion.Euler(0, 0, 0)) as GameObject;
+        GameObject chunk = Instantiate(spawnPrefab[rndPrefab], new Vector3(0,0,0), Quaternion.Euler(0, 0, 0)) as GameObject;
         //Spawne den ersten Hintergrund
-        GameObject background = Instantiate(spawnBackground[rnd],spawnBackground[rnd].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+        GameObject background = Instantiate(spawnBackground[rndBackground],spawnBackground[rndBackground].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         //Spawne den zweiten Hintergrund
-        GameObject background1 = Instantiate(spawnBackground[4-rnd], spawnBackground[4-rnd].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+        GameObject background1 = Instantiate(spawnBackground[spawnBackground.Length - rndBackground], spawnBackground[spawnPrefab.Length - rndBackground].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         // Füge das erste Levelchunk der Liste aller Chunks hinzu
         allPrefabs.Add(chunk);
         //Füge den ersten Hintergrund in die Liste der Hintergründe
