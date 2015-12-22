@@ -174,9 +174,9 @@ namespace UnityStandardAssets._2D
 
         private void Respawn()
         {
-            if (Camera.main != null)
+            if ((dead == false)&&(character.activeInHierarchy == true)&&(GameObject.Find("Main Camera") != null))
             {
-                Vector3 camPos = Camera.main.gameObject.transform.position;
+                Vector3 camPos = GameObject.Find("Main Camera").transform.position;
                 Vector3 respawnPos = new Vector3(camPos.x + 5, camPos.y + 3, gameObject.transform.position.z);
                 gameObject.transform.position = respawnPos;
                 jumpCount = this.MaxJumps;
