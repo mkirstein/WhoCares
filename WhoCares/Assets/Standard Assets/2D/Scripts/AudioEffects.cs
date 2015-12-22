@@ -15,9 +15,23 @@ namespace UnityStandardAssets._2D
         }
         public void p1jump()
         {
-            this.source = GetComponent<AudioSource>();
             source.PlayOneShot(player1jump, 1);
-            Debug.Log("Player 1 Jump Sound");
+        }
+        public void p2jump()
+        {
+            source.PlayOneShot(player2jump, 1);
+        }
+        public void die()
+        {
+            source.PlayOneShot(wasted, 1);
+        }
+        public void seal()
+        {
+            source.PlayOneShot(robbe, 1);
+        }
+        public void win()
+        {
+            source.PlayOneShot(playerwin, 1);
         }
     }
 }

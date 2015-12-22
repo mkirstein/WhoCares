@@ -54,6 +54,7 @@ namespace UnityStandardAssets._2D
         private Text lifeCounterText;
         private int lifeCounter = 5;
         private float highscore = 0f;
+        private AudioEffects ae;
         
 
         private void Awake()
@@ -63,6 +64,8 @@ namespace UnityStandardAssets._2D
             m_CeilingCheck = transform.Find("CeilingCheck");
             m_Anim = GetComponent<Animator>();
             m_Rigidbody2D = GetComponent<Rigidbody2D>();
+            ae = GameObject.Find("Audio").GetComponent("AudioEffects") as AudioEffects;
+
 
             jumpCount = this.MaxJumps;
         }
@@ -150,8 +153,15 @@ namespace UnityStandardAssets._2D
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                     // Reduce max jumps in the air (double jump)
                     jumpCount = jumpCount - 1;
-                    AudioEffects ae = GameObject.Find("Audio").GetComponent("AudioEffects") as AudioEffects;
-                    ae.p1jump();
+                    if (this.playerID == 0)
+                    {
+                        ae.p1jump();
+                    }
+                    if (this.playerID == 1)
+                    {
+                        ae.p2jump();
+                    }
+                    
                 }
             }
 
@@ -178,6 +188,7 @@ namespace UnityStandardAssets._2D
         {
             if ((dead == false)&&(character.activeInHierarchy == true)&&(GameObject.Find("Main Camera") != null))
             {
+                ae.die();
                 Vector3 camPos = GameObject.Find("Main Camera").transform.position;
                 Vector3 respawnPos = new Vector3(camPos.x + 5, camPos.y + 3, gameObject.transform.position.z);
                 gameObject.transform.position = respawnPos;
