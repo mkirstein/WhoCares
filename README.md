@@ -1,5 +1,5 @@
 # awesome
 
-A project by nkristek, mkirstein and wittenator.\n
+A project by nkristek, mkirstein and wittenator.
 
 Link to the most recent stable build: http://whocares-unity.azurewebsites.com
