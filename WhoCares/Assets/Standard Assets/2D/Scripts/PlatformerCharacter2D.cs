@@ -155,12 +155,12 @@ namespace UnityStandardAssets._2D
                     m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
                     // Reduce max jumps in the air (double jump)
                     jumpCount = jumpCount - 1;
-                    if (this.playerID == 0)
+                    if ((this.playerID == 0)&&(jumpCount == 0))
                     {
                         // Audio abspielen bei Sprung
                         ae.p1jump();
                     }
-                    if (this.playerID == 1)
+                    if ((this.playerID == 1)&& (jumpCount == 0))
                     {
                         // Audio abspielen bei Sprung
                         ae.p2jump();
