@@ -17,6 +17,7 @@ namespace UnityStandardAssets._2D
             m_Character = GetComponent<PlatformerCharacter2D>();
         }
 
+        public float speed = 1f;
 
         private void Update()
         {
@@ -50,11 +51,11 @@ namespace UnityStandardAssets._2D
                     {
                         if (Input.GetKey(KeyCode.A))
                         {
-                            return -1f;
+                            return -1f * speed;
                         }
                         else if (Input.GetKey(KeyCode.D))
                         {
-                            return 1f;
+                            return 1f * speed;
                         }
                         else
                         {
@@ -64,11 +65,11 @@ namespace UnityStandardAssets._2D
                     {
                         if (Input.GetKey(KeyCode.LeftArrow))
                         {
-                            return -1f;
+                            return -1f * speed;
                         }
                         else if (Input.GetKey(KeyCode.RightArrow))
                         {
-                            return 1f;
+                            return 1f * speed;
                         }
                         else
                         {

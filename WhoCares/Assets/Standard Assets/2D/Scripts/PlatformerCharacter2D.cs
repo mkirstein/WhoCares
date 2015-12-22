@@ -55,7 +55,7 @@ namespace UnityStandardAssets._2D
         private int lifeCounter = 5;
         private float highscore = 0f;
         private AudioEffects ae;
-        
+        public int speed = 1;
 
         private void Awake()
         {
@@ -118,6 +118,7 @@ namespace UnityStandardAssets._2D
             {
                 // Reduce the speed if crouching by the crouchSpeed multiplier
                 move = (crouch ? move * m_CrouchSpeed : move);
+                move *= speed;
 
                 // The Speed animator parameter is set to the absolute value of the horizontal input.
                 m_Anim.SetFloat("Speed", Mathf.Abs(move));
