@@ -64,7 +64,7 @@ public class WorldGen : MonoBehaviour {
         //Spawne den ersten Hintergrund
         GameObject background = Instantiate(spawnBackground[rndBackground],spawnBackground[rndBackground].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         //Spawne den zweiten Hintergrund
-        GameObject background1 = Instantiate(spawnBackground[spawnBackground.Length - rndBackground], spawnBackground[spawnPrefab.Length - rndBackground].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
+        GameObject background1 = Instantiate(spawnBackground[spawnBackground.Length - 1 - rndBackground], spawnBackground[spawnPrefab.Length -1 - rndBackground].transform.position, Quaternion.Euler(0, 0, 0)) as GameObject;
         // Füge das erste Levelchunk der Liste aller Chunks hinzu
         allPrefabs.Add(chunk);
         //Füge die Hintergründe in die Liste der Hintergründe
