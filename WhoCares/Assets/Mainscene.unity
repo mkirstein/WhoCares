@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPrefab:
-  - {fileID: 164256, guid: 73665c0b834704443b0cb62c166fb43d, type: 2}
+  - {fileID: 132794, guid: 73665c0b834704443b0cb62c166fb43d, type: 2}
   - {fileID: 191398, guid: 51a2003f055373342b36eca520df2cd8, type: 2}
   - {fileID: 164644, guid: e698a6ee8880b3e4191d4df31e1d914d, type: 2}
   - {fileID: 168350, guid: e71014c0510f3d34581bb34cf978b48c, type: 2}
@@ -522,6 +522,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isSingleplayer: 0
   playerId: 1
+  speed: 1
 --- !u!4 &409948401 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 87a2357765801c34292d6718d8b4d770, type: 2}
@@ -751,8 +752,6 @@ MonoBehaviour:
   player1jump: {fileID: 8300000, guid: 38b81e2245283c24f844c0658afc6d4f, type: 3}
   player2jump: {fileID: 8300000, guid: dd129c1a0666a9043a8c106c804c8a66, type: 3}
   wasted: {fileID: 8300000, guid: 23a041714c154c849885bdf807c1012f, type: 3}
-  robbe: {fileID: 8300000, guid: a7473b6af0b9ae6468a7313fab92f00a, type: 3}
-  playerwin: {fileID: 8300000, guid: 46360d92ffa86114b93705ee83b9d70e, type: 3}
 --- !u!4 &610951463
 Transform:
   m_ObjectHideFlags: 0

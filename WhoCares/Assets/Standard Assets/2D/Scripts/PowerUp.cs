@@ -30,6 +30,7 @@ namespace UnityStandardAssets._2D
         {
             if (active)
             {
+                gameObject.GetComponent<CircleCollider2D>().enabled = false;
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 PlatformerCharacter2D char2D = (PlatformerCharacter2D)coll.gameObject.GetComponent(typeof(PlatformerCharacter2D));
                 int rand = rnd.Next(0, count);
